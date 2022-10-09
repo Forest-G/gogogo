@@ -1,0 +1,9 @@
+#配置文件
+server:
+  port: 8080 
+  #端口号
+data:
+  who: message
+  #数据库名字
+  password: Wasd,./2002
+  #密码
