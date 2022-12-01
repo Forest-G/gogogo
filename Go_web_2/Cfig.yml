@@ -1,0 +1,5 @@
+server: 
+   port: 8080 
+data:
+   who: company     
+   password: zyc12345678910     

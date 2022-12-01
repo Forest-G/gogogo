@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>用户页面</title>
+        <style>
+            /* 表格样式 */
+        table{
+            border-collapse: collapse;
+            margin:0 auto;
+        }
+        table td{
+            border:1px solid #000000;
+            width: 100px;
+            line-height: 40px;
+            text-align: center;
+        }
+        </style>
+        <script type="text/javascript" src="text.js">
+        </script>
+        <script type="text/javascript">
+            var storage=window.sessionStorage;//首先获取是谁,使用的是姓名
+            var c =new Object;
+            c.uuid=storage.getItem("uuid");
+            var httpRequest =new XMLHttpRequest();
+            httpRequest.open("POST","http://localhost:8080/userinformation",true);
+            httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            httpRequest.send(JSON.stringify(c));//发送信息uuid
+            httpRequest.onreadystatechange =()=>{
+                if (httpRequest.readyState == 4 && httpRequest.status==200){
+                    var data=JSON.parse(httpRequest.responseText);//获取后端发过来的数据//这时data类似与一个数组
+                    var str = '';
+                   // console.log( data.information)
+                    var a =data.information
+                    for(var i = 0 ; i <= a.length-1 ; i++){
+                        str += '<tr>';
+                        str += `<td>${a[i].id}</td>`;
+                        str += `<td>${a[i].uuid}</td>`;
+                        str += `<td>${a[i].time}</td>`;    
+                        str += `<td>${a[i].information}</td>`;
+                        str += `<td><a href="javascript:;" onclick="deleteusermessage(this)">删除</a></td>`;
+                        str += `<td><button onclick="revusermessage(this)">修改</button></tb>`;
+                        str += '</tr>';
+                    }
+                    tb.innerHTML = str;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="formdiv">
+            <td><button onclick="addusernamemessage()">添加</button></tb>
+        </div>
+        <div id="find_id">
+            id：<input type="text" name="uuid" id="id"/>
+            <td><button onclick="findmessage()">查询</button></tb>
+        </div>
+        <p></p>
+        <p></p>
+        <p></p>
+        <table>
+            <!-- 固定的页面内容 -->
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>姓名</td>
+                    <td>时间</td>
+                    <td>信息</tb>
+                    <td>删除</tb>
+                    <td>修改</td>
+                </tr>
+            </thead>
+            <!-- 根据数据库信息的渲染生成的页面内容 
+                给要要操作的tbody标签,添加id属性属性值,通过id属性值,来操作标签
+            -->
+            <tbody id="tb"></tbody><!--需要增加的信息添加到里边-->
+            </table>
+    </body>
+</html>

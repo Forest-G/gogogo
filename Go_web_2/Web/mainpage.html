@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>登录页面</title>
+        <style>
+           body {
+            margin: 0 auto;
+            width:300px;   
+            height:200px;
+        }
+        </style>
+        <script type="text/javascript" src="text.js">
+        </script>
+    </head>
+    <body>
+            <label>账号：</label>
+            <input class="itxt" type="text" placeholder="请输入用户名" autocomplete="off" tabindex="1" name="username" id="username"/>
+            <p></p> 
+            <label>密码：</label>
+		    <input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password" id="password"/>
+            <p></p> 
+            组别：<input type="radio" name="id" value="user" checked="checked">普通用户
+            <input type="radio" name="id" value="administrators">管理员
+            <p></p>
+            <input type="submit" onclick="formSubmit()" value="登录" /><!--绑定响应函数formSubmitmain()-->
+            <input type="submit" onclick=" registermessage()" value="注册" />
+
+    </body>
+</html>
